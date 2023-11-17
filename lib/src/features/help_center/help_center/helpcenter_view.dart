@@ -1,6 +1,6 @@
 import 'package:accessboard_sdk_24/src/core/widgets/animations/hero_animation.dart';
 import 'package:accessboard_sdk_24/src/features/help_center/chat/chat_screen.dart';
-import 'package:accessboard_sdk_24/src/features/help_center/contact/contact_view.dart';
+import 'package:accessboard_sdk_24/src/features/help_center/contact/contact_screen.dart';
 import 'package:accessboard_sdk_24/src/features/help_center/faq/faq_page.dart';
 import 'package:flutter/material.dart';
 
