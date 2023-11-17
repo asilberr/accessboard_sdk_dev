@@ -1,4 +1,4 @@
-library accessboard_sdk;
+library accessboard_sdk_24;
 
 /// A Calculator.
 class Calculator {
