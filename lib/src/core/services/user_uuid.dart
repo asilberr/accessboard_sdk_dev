@@ -1,5 +1,5 @@
-import 'dart:math';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:math';
 
 class UserUUID {
   Random _random = Random();
@@ -34,5 +34,11 @@ class UserUUID {
     _prefs.setString('uuid', uuid); // Save UUID to SharedPreferences
 
     return uuid;
+  }
+
+  // Added method to retrieve the stored UUID
+  String getStoredUuid() {
+    return _prefs.getString('uuid') ??
+        ''; // Return an empty string if the UUID is not found
   }
 }
