@@ -1,4 +1,4 @@
-import 'package:accessboard_sdk_24/src/core/services/user_uuid.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:accessboard_sdk_24/src/core/widgets/animations/hero_animation.dart';
 import 'package:accessboard_sdk_24/src/features/help_center/chat/chat_screen.dart';
 import 'package:accessboard_sdk_24/src/features/help_center/contact/contact_screen.dart';
@@ -120,9 +120,11 @@ class ContactCard extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 1,
-                    child: Image.asset(
-                      imagePath,
-                      fit: BoxFit.cover,
+                    child: CachedNetworkImage(
+                      imageUrl: imagePath,
+                      placeholder: (context, url) =>
+                          CircularProgressIndicator(),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                   ),
                   Expanded(

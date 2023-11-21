@@ -27,6 +27,7 @@ dependencies:
   shared_preferences: ^2.2.2
   uuid: ^4.2.1
   device_info: ^2.0.3
+  cached_network_image: ^3.3.0
 
 dev_dependencies:
   flutter_test:
