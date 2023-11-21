@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 class HelpCenterScreen extends StatelessWidget {
   /// HelpCenter
   const HelpCenterScreen({super.key, required this.uuid});
-  final UserUUID uuid;
+  final String uuid;
 
   @override
   Widget build(BuildContext context) {
