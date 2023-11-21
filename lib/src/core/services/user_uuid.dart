@@ -5,11 +5,9 @@ class UserUUID {
   Random _random = Random();
   late SharedPreferences _prefs;
 
-  UserUUID() {
-    _initSharedPreferences();
-  }
+  UserUUID();
 
-  Future<void> _initSharedPreferences() async {
+  Future<void> initSharedPreferences() async {
     _prefs = await SharedPreferences.getInstance();
   }
 
