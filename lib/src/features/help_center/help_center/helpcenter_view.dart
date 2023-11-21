@@ -8,12 +8,11 @@ import 'package:flutter/material.dart';
 /// HelpCenterScreen
 class HelpCenterScreen extends StatelessWidget {
   /// HelpCenter
-  const HelpCenterScreen({super.key});
+  const HelpCenterScreen({super.key, required this.uuid});
+  final UserUUID uuid;
 
   @override
   Widget build(BuildContext context) {
-    final UserUUID userUUID = UserUUID();
-    final String generatedUuid = userUUID.generateUuid();
     return Scaffold(
       appBar: AppBar(),
       body: Column(
@@ -40,7 +39,7 @@ class HelpCenterScreen extends StatelessWidget {
                 ContactCard(
                   imagePath: 'assets/images/help_center_card1.png',
                   title: 'FAQ',
-                  subtitle: 'Frequently Asked Questions, for $generatedUuid',
+                  subtitle: 'Frequently Asked Questions, for $uuid',
                   onPressed: () {
                     heroAnimation(
                         destinationWidget: const FaqPage(), context: context);
