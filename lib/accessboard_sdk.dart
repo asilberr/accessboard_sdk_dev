@@ -1,7 +1,7 @@
 library accessboard_sdk_24;
 
 export 'src/core/constants/constant_sizes.dart';
-export 'src/core/services/user_uuid.dart';
+export 'src/utils/user_uuid.dart';
 export 'src/core/themes/styling_manager.dart';
 export 'src/core/themes/text_styles.dart';
 export 'src/core/themes/theme_manager.dart';

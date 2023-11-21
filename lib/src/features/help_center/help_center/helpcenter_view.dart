@@ -37,7 +37,8 @@ class HelpCenterScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ContactCard(
-                  imagePath: 'assets/images/help_center_card1.png',
+                  imagePath:
+                      'https://www.flaticon.com/de/kostenloses-icon/faq_3976624?term=faq&related_id=3976624',
                   title: 'FAQ',
                   subtitle: 'Frequently Asked Questions, for $uuid',
                   onPressed: () {
@@ -47,7 +48,8 @@ class HelpCenterScreen extends StatelessWidget {
                   heroTag: 'faq_page',
                 ),
                 ContactCard(
-                  imagePath: 'assets/images/help_center_card2.png',
+                  imagePath:
+                      'https://www.flaticon.com/de/kostenloses-icon/plaudern_724715?term=chat&page=1&position=3&origin=search&related_id=724715',
                   title: 'Chat',
                   subtitle: 'Chat with a support agent',
                   onPressed: () {
@@ -58,7 +60,8 @@ class HelpCenterScreen extends StatelessWidget {
                   heroTag: 'chat_page',
                 ),
                 ContactCard(
-                  imagePath: 'assets/images/help_center_card3.png',
+                  imagePath:
+                      'https://www.flaticon.com/de/kostenloses-icon/contact-us_8643996?term=contact&page=1&position=7&origin=search&related_id=8643996',
                   title: 'Contact',
                   subtitle: 'Contact us for help',
                   onPressed: () {
@@ -123,8 +126,9 @@ class ContactCard extends StatelessWidget {
                     child: CachedNetworkImage(
                       imageUrl: imagePath,
                       placeholder: (context, url) =>
-                          CircularProgressIndicator(),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
+                          const CircularProgressIndicator(),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
                     ),
                   ),
                   Expanded(
