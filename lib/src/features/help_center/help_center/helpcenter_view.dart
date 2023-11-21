@@ -1,3 +1,4 @@
+import 'package:accessboard_sdk_24/src/core/services/user_uuid.dart';
 import 'package:accessboard_sdk_24/src/core/widgets/animations/hero_animation.dart';
 import 'package:accessboard_sdk_24/src/features/help_center/chat/chat_screen.dart';
 import 'package:accessboard_sdk_24/src/features/help_center/contact/contact_screen.dart';
@@ -11,6 +12,8 @@ class HelpCenterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final UserUUID userUUID = UserUUID();
+    final String generatedUuid = userUUID.generateUuid();
     return Scaffold(
       appBar: AppBar(),
       body: Column(
@@ -37,7 +40,7 @@ class HelpCenterScreen extends StatelessWidget {
                 ContactCard(
                   imagePath: 'assets/images/help_center_card1.png',
                   title: 'FAQ',
-                  subtitle: 'Frequently Asked Questions',
+                  subtitle: 'Frequently Asked Questions, for $generatedUuid',
                   onPressed: () {
                     heroAnimation(
                         destinationWidget: const FaqPage(), context: context);
