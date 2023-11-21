@@ -1,42 +1,54 @@
-import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:math';
+import 'package:uuid/uuid.dart';
+import 'package:device_info/device_info.dart';
 
 class UserUUID {
-  Random _random = Random();
-  late SharedPreferences _prefs;
+  String _deviceIdentifier = '';
+  String _customIdentifier = '';
 
-  UserUUID();
-
-  Future<void> initSharedPreferences() async {
-    _prefs = await SharedPreferences.getInstance();
+  // Constructor to initialize device identifier
+  UserUUID() {
+    _initDeviceIdentifier();
   }
 
-  String generateUuid() {
-    final int uuidLength = 36;
-
-    final List<String> uuidParts = List<String>.generate(uuidLength, (index) {
-      if (index == 8 || index == 13 || index == 18 || index == 23) {
-        return '-';
-      } else if (index == 14) {
-        return '4'; // Version 4 UUID
-      } else if (index == 19) {
-        final int variant = (_random.nextInt(4) + 8); // [8, 9, A, B]
-        return variant.toRadixString(16);
-      } else {
-        return _random.nextInt(16).toRadixString(16);
-      }
-    });
-
-    final String uuid = uuidParts.join();
-
-    _prefs.setString('uuid', uuid); // Save UUID to SharedPreferences
-
-    return uuid;
+  // Initialize the device identifier using the device_info package
+  Future<void> _initDeviceIdentifier() async {
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    _deviceIdentifier = androidInfo.androidId;
   }
 
-  // Added method to retrieve the stored UUID
-  String getStoredUuid() {
-    return _prefs.getString('uuid') ??
-        ''; // Return an empty string if the UUID is not found
+  // Set custom identifier for the user
+  void setCustomIdentifier(String customIdentifier) {
+    _customIdentifier = customIdentifier;
   }
+
+  // Generate the user UUID
+  String generateUUID() {
+    // Concatenate device identifier and custom identifier
+    String combinedIdentifier = '$_deviceIdentifier:$_customIdentifier';
+
+    // Generate a UUID using a simple hash function
+    return _simpleHash(combinedIdentifier);
+  }
+
+  // Simple hash function to generate a UUID-like string
+  String _simpleHash(String input) {
+    int hash = 0;
+    for (int i = 0; i < input.length; i++) {
+      hash = (31 * hash + input.codeUnitAt(i)) & 0xFFFFFFFF;
+    }
+    return Uuid().v5(Uuid.NAMESPACE_URL, hash.toString());
+  }
+}
+
+void main() async {
+  // Create an instance of UserUUID
+  UserUUID userUUID = UserUUID();
+
+  // Set custom identifier (replace with your user's unique identifier)
+  userUUID.setCustomIdentifier('john_doe');
+
+  // Generate and print the user UUID
+  String uuid = userUUID.generateUUID();
+  print('User UUID: $uuid');
 }
